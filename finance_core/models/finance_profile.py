@@ -5,6 +5,7 @@ from datetime import date
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
+from odoo.tools.safe_eval import safe_eval
 
 
 class FinanceProfile(models.Model):
@@ -287,8 +288,24 @@ class FinanceProfile(models.Model):
         }
 
     def action_refresh_alerts(self):
+        self.ensure_one()
         self._generate_smart_alerts()
         return True
+
+    def action_open_alerts(self):
+        self.ensure_one()
+        action = self.env.ref("finance_core.action_finance_alerts").read()[0]
+        action['domain'] = [('profile_id', '=', self.id)]
+        context = action.get('context') or {}
+        context = safe_eval(context) if isinstance(context, str) else dict(context)
+        context.update(
+            {
+                'default_profile_id': self.id,
+                'search_default_profile_id': self.id,
+            }
+        )
+        action['context'] = context
+        return action
 
     def _generate_smart_alerts(self):
         today = date.today()
@@ -423,6 +440,15 @@ class FinanceProfile(models.Model):
                 "default_finance_profile_id": self.id,
             },
         }
+
+    def action_open_dashboard(self):
+        self.ensure_one()
+        action = self.env.ref("finance_core.action_finance_profile_board").read()[0]
+        context = action.get('context') or {}
+        context = safe_eval(context) if isinstance(context, str) else dict(context)
+        context.update({'finance_profile_id': self.id})
+        action['context'] = context
+        return action
 
     def action_export_personal_data(self):
         self.ensure_one()
