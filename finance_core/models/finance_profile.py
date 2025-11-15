@@ -5,7 +5,6 @@ from datetime import date
 
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools.safe_eval import safe_eval
 
 
 class FinanceProfile(models.Model):
@@ -290,29 +289,6 @@ class FinanceProfile(models.Model):
     def action_refresh_alerts(self):
         self._generate_smart_alerts()
         return True
-
-    def action_open_alerts(self):
-        self.ensure_one()
-        action = self.env.ref("finance_core.action_finance_alerts", raise_if_not_found=False)
-        if not action:
-            raise UserError(_("Configuração incompleta: a action de alertas não está disponível."))
-        result = action.read()[0]
-        raw_context = result.get("context") or {}
-        if isinstance(raw_context, str):
-            try:
-                raw_context = safe_eval(raw_context)
-            except Exception:
-                raw_context = {}
-        context = dict(raw_context)
-        context.update(
-            {
-                "default_profile_id": self.id,
-                "search_default_profile_id": self.id,
-            }
-        )
-        result["context"] = context
-        result["domain"] = [("profile_id", "=", self.id)]
-        return result
 
     def action_open_dashboard(self):
         self.ensure_one()
