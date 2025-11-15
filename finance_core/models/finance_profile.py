@@ -128,6 +128,11 @@ class FinanceProfile(models.Model):
         store=True,
         group_operator="avg",
     )
+    goals_progress_percentage = fields.Float(
+        string="Progresso médio das metas (%)",
+        compute="_compute_financial_snapshots",
+        store=True,
+    )
     portfolio_value = fields.Monetary(
         string="AUM consolidado",
         currency_field="currency_id",
@@ -250,7 +255,9 @@ class FinanceProfile(models.Model):
                 latest_snapshot = profile.portfolio_snapshot_ids[:1]
                 if latest_snapshot:
                     aum_total = latest_snapshot.market_value
-            profile.goals_progress = goals_progress if goal_count else 0.0
+            normalized_progress = goals_progress if goal_count else 0.0
+            profile.goals_progress = normalized_progress
+            profile.goals_progress_percentage = round(normalized_progress * 100.0, 2)
             profile.cashflow_balance = cashflow_balance
             profile.portfolio_value = aum_total
 
@@ -443,7 +450,7 @@ class FinanceProfile(models.Model):
 
     def action_open_dashboard(self):
         self.ensure_one()
-        action = self.env.ref("finance_core.action_finance_profile_board").read()[0]
+        action = self.env.ref("finance_core.action_finance_profile_dashboard").read()[0]
         context = action.get('context') or {}
         context = safe_eval(context) if isinstance(context, str) else dict(context)
         context.update({'finance_profile_id': self.id})

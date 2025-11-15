@@ -11,7 +11,7 @@
                         <li>Score financeiro: <t t-esc="doc.advisory_score"/></li>
                         <li>AUM consolidado: <span t-esc="doc.currency_id.symbol"/> <t t-esc="doc.portfolio_value"/></li>
                         <li>Fluxo de caixa mensal: <span t-esc="doc.currency_id.symbol"/> <t t-esc="doc.cashflow_balance"/></li>
-                        <li>Progresso médio das metas: <t t-esc="doc.goals_progress"/>%</li>
+                        <li>Progresso médio das metas: <t t-esc="doc.goals_progress_percentage"/>%</li>
                     </ul>
                     <h3>Metas</h3>
                     <table class="table table-sm">

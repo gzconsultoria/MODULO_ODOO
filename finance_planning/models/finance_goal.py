@@ -36,6 +36,11 @@ class FinanceGoal(models.Model):
     )
     description = fields.Html()
     progress_ratio = fields.Float(compute="_compute_progress_ratio", store=True)
+    progress_percentage = fields.Float(
+        string="Progresso (%)",
+        compute="_compute_progress_percentage",
+        store=True,
+    )
     is_late = fields.Boolean(compute="_compute_is_late", store=True)
     alert_message = fields.Char(compute="_compute_alert_message")
     currency_id = fields.Many2one("res.currency", default=lambda self: self.env.company.currency_id, required=True)
@@ -58,6 +63,11 @@ class FinanceGoal(models.Model):
                 goal.progress_ratio = min(goal.accumulated_amount / goal.target_amount, 1.0)
             else:
                 goal.progress_ratio = 0.0
+
+    @api.depends("progress_ratio")
+    def _compute_progress_percentage(self):
+        for goal in self:
+            goal.progress_percentage = round(goal.progress_ratio * 100.0, 2)
 
     @api.depends("horizon_date", "state", "progress_ratio")
     def _compute_is_late(self):

@@ -10,10 +10,10 @@
                 <field name="onboarding_stage"/>
                 <field name="company_id"/>
                 <field name="suitability_state"/>
-                <field name="advisory_score" widget="float_toggle" options="{'factor': 1}"/>
+                <field name="advisory_score"/>
                 <field name="portfolio_value" widget="monetary"/>
                 <field name="cashflow_balance" widget="monetary"/>
-                <field name="goals_progress" widget="percentpie"/>
+                <field name="goals_progress_percentage"/>
                 <field name="pending_documents"/>
             </list>
         </field>
@@ -26,31 +26,11 @@
         <field name="context">{'default_investor_type': 'pf'}</field>
     </record>
 
-    <record id="view_finance_profile_board" model="board.board">
-        <field name="name">Painel do Consultor Financeiro</field>
-        <field name="company_id" eval="False"/>
-        <field name="line_ids" eval="[(0, 0, {
-            'name': 'Clientes com alerts',
-            'view_id': ref('finance_core.view_finance_profile_list'),
-            'action_id': ref('finance_core.action_finance_profile'),
-            'sequence': 10,
-            'height': 300,
-        }), (0, 0, {
-            'name': 'Alertas pendentes',
-            'view_id': ref('finance_core.view_finance_profile_list'),
-            'domain': "[('pending_documents', '>', 0)]",
-            'action_id': ref('finance_core.action_finance_profile'),
-            'sequence': 20,
-            'height': 250,
-        })]"/>
-    </record>
-
-    <record id="action_finance_profile_board" model="ir.actions.act_window">
+    <record id="action_finance_profile_dashboard" model="ir.actions.act_window">
         <field name="name">Painel Financeiro</field>
-        <field name="res_model">board.board</field>
-        <field name="view_mode">form</field>
-        <field name="res_id" ref="finance_core.view_finance_profile_board"/>
-        <field name="target">current</field>
+        <field name="res_model">finance.profile</field>
+        <field name="view_mode">graph,pivot,list</field>
+        <field name="context">{}</field>
     </record>
 
     <record id="action_finance_alerts" model="ir.actions.act_window">
@@ -134,8 +114,8 @@
                             <field name="cashflow_balance" widget="monetary"/>
                         </div>
                         <div class="o_finance_card">
-                            <label for="goals_progress" string="Progresso médio das metas"/>
-                            <field name="goals_progress" widget="percentpie"/>
+                            <label for="goals_progress_percentage" string="Progresso médio das metas"/>
+                            <field name="goals_progress_percentage" widget="gauge" options="{'max_field': 100}"/>
                         </div>
                     </group>
                     <notebook>

@@ -5,7 +5,7 @@
     "version": "19.0.1.0.0",
     "license": "LGPL-3",
     "author": "Finance Suite",
-    "depends": ["base", "contacts", "mail", "board"],
+    "depends": ["base", "contacts", "mail"],
     "data": [
         "security/finance_core_groups.xml",
         "security/ir.model.access.csv",
