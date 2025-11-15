@@ -56,9 +56,11 @@
                         </button>
                         <button
                             class="oe_stat_button"
-                            type="object"
-                            name="action_open_alerts"
+                            type="action"
+                            name="%(finance_core.action_finance_alerts)d"
                             icon="fa-bell"
+                            context="{'default_profile_id': id, 'search_default_profile_id': id}"
+                            domain="[('profile_id', '=', id)]"
                         >
                             <field name="pending_documents" widget="statinfo" string="Alertas"/>
                         </button>
