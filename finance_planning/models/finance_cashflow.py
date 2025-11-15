@@ -38,6 +38,7 @@ class FinanceCashflowPlan(models.Model):
 class FinanceCashflowItem(models.Model):
     _name = "finance.cashflow.item"
     _description = "Item do planejamento financeiro"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "entry_type, amount desc"
 
     plan_id = fields.Many2one("finance.cashflow.plan", required=True, ondelete="cascade", index=True)

@@ -9,7 +9,7 @@ from odoo.exceptions import ValidationError
 class FinancePortfolio(models.Model):
     _name = "finance.portfolio"
     _description = "Carteira de investimentos do cliente"
-    _inherit = ["mail.thread"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     profile_id = fields.Many2one("finance.profile", required=True, ondelete="cascade", index=True)
     name = fields.Char(required=True, default=lambda self: _("Carteira principal"))
@@ -59,6 +59,7 @@ class FinancePortfolio(models.Model):
 class FinancePortfolioSnapshot(models.Model):
     _name = "finance.portfolio.snapshot"
     _description = "Snapshot versionado da carteira"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "snapshot_date desc"
 
     portfolio_id = fields.Many2one("finance.portfolio", required=True, ondelete="cascade", index=True)
@@ -140,6 +141,7 @@ class FinancePortfolioSnapshot(models.Model):
 class FinancePortfolioPosition(models.Model):
     _name = "finance.portfolio.position"
     _description = "Posição de investimento"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     snapshot_id = fields.Many2one("finance.portfolio.snapshot", required=True, ondelete="cascade", index=True)
     reference_id = fields.Many2one("finance.asset.ref", required=True, ondelete="restrict")

@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 class FinanceAssetReference(models.Model):
     _name = "finance.asset.ref"
     _description = "Referência única de ativo financeiro"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _rec_name = "display_name"
     _sql_constraints = [
         ("finance_asset_ref_unique", "unique(identifier)", "Já existe uma referência com esse identificador."),
@@ -56,6 +57,7 @@ class FinanceAssetReference(models.Model):
 class FinanceAsset(models.Model):
     _name = "finance.asset"
     _description = "Ativo patrimonial do cliente"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     profile_id = fields.Many2one("finance.profile", required=True, ondelete="cascade", index=True)
     reference_id = fields.Many2one("finance.asset.ref", required=True, ondelete="restrict")
@@ -78,6 +80,7 @@ class FinanceAsset(models.Model):
 class FinanceLiability(models.Model):
     _name = "finance.liability"
     _description = "Passivo do cliente"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     profile_id = fields.Many2one("finance.profile", required=True, ondelete="cascade", index=True)
     name = fields.Char(required=True)

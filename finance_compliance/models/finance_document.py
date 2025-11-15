@@ -6,6 +6,7 @@ from odoo.exceptions import ValidationError
 class FinanceComplianceLog(models.Model):
     _name = "finance.compliance.log"
     _description = "Trilha de auditoria financeira"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "create_date desc"
 
     profile_id = fields.Many2one("finance.profile", required=True, ondelete="cascade", index=True)
@@ -31,7 +32,7 @@ class FinanceComplianceLog(models.Model):
 class FinanceDocument(models.Model):
     _name = "finance.document"
     _description = "Documentos de compliance"
-    _inherit = ["mail.thread"]
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     profile_id = fields.Many2one("finance.profile", required=True, ondelete="cascade", index=True)
     name = fields.Char(required=True)

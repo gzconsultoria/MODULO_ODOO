@@ -5,6 +5,7 @@ from odoo import fields, models
 class FinanceAlert(models.Model):
     _name = "finance.alert"
     _description = "Alerta inteligente de consultoria"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "state, trigger_date desc"
 
     name = fields.Char(required=True)

@@ -76,6 +76,7 @@ class FinanceRecommendation(models.Model):
 class FinanceRecommendationLine(models.Model):
     _name = "finance.recommendation.line"
     _description = "Linha da recomendação"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
 
     recommendation_id = fields.Many2one("finance.recommendation", required=True, ondelete="cascade")
     reference_id = fields.Many2one("finance.asset.ref", required=True)
