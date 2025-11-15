@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_profile_tree" model="ir.ui.view">
+        <field name="name">finance.profile.tree</field>
+        <field name="model">finance.profile</field>
+        <field name="arch" type="xml">
+            <tree decoration-danger="suitability_state == 'expired'" decoration-warning="suitability_state == 'expiring'">
+                <field name="display_name"/>
+                <field name="advisor_id"/>
+                <field name="onboarding_stage"/>
+                <field name="company_id"/>
+                <field name="suitability_state"/>
+                <field name="advisory_score" widget="float_toggle" options="{'factor': 1}"/>
+                <field name="portfolio_value" widget="monetary"/>
+                <field name="cashflow_balance" widget="monetary"/>
+                <field name="goals_progress" widget="percentpie"/>
+                <field name="pending_documents"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_finance_profile_form" model="ir.ui.view">
+        <field name="name">finance.profile.form</field>
+        <field name="model">finance.profile</field>
+        <field name="arch" type="xml">
+            <form string="Cliente 360°">
+                <header>
+                    <field name="onboarding_stage" widget="statusbar" statusbar_visible="new,diagnosis,planning,execution,review"/>
+                    <button name="action_open_onboarding_wizard" type="object" string="Atualizar onboarding" class="btn-secondary"/>
+                    <button name="action_refresh_alerts" type="object" string="Atualizar alertas" class="btn-primary"/>
+                    <button name="action_open_partner" type="object" string="Abrir contato" class="btn-light"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="action_open_partner" class="oe_stat_button" icon="fa-user">
+                            <field name="partner_id" widget="statinfo" string="Contato"/>
+                        </button>
+                        <button class="oe_stat_button" type="action" name="%(finance_core.action_finance_alerts)d" icon="fa-bell">
+                            <field name="pending_documents" widget="statinfo" string="Alertas"/>
+                        </button>
+                        <button class="oe_stat_button" type="action" name="%(finance_core.action_finance_profile_board)d" icon="fa-dashboard">
+                            <span class="o_stat_text">Dashboard</span>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="action_open_goal_wizard" icon="fa-bullseye">
+                            <span class="o_stat_text">Nova meta</span>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="action_open_review_wizard" icon="fa-calendar-check-o">
+                            <span class="o_stat_text">Revisão trimestral</span>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="action_open_recommendation_wizard" icon="fa-lightbulb-o">
+                            <span class="o_stat_text">Recomendação</span>
+                        </button>
+                        <button class="oe_stat_button" type="object" name="action_schedule_review" icon="fa-video-camera">
+                            <span class="o_stat_text">Agendar meet</span>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="advisor_id"/>
+                            <field name="investor_type"/>
+                            <field name="company_id"/>
+                            <field name="currency_id"/>
+                        </group>
+                        <group>
+                            <field name="suitability_profile"/>
+                            <field name="suitability_score"/>
+                            <field name="suitability_last_review"/>
+                            <field name="suitability_next_review" readonly="1"/>
+                            <field name="suitability_state" readonly="1"/>
+                        </group>
+                    </group>
+                    <group col="4" class="o_finance_360_cards">
+                        <div class="o_finance_card">
+                            <label for="advisory_score" string="Score financeiro"/>
+                            <field name="advisory_score" widget="gauge" options="{'max_field': 100}"/>
+                        </div>
+                        <div class="o_finance_card">
+                            <label for="portfolio_value" string="AUM consolidado"/>
+                            <field name="portfolio_value" widget="monetary"/>
+                        </div>
+                        <div class="o_finance_card">
+                            <label for="cashflow_balance" string="Fluxo de caixa mensal"/>
+                            <field name="cashflow_balance" widget="monetary"/>
+                        </div>
+                        <div class="o_finance_card">
+                            <label for="goals_progress" string="Progresso médio das metas"/>
+                            <field name="goals_progress" widget="percentpie"/>
+                        </div>
+                    </group>
+                    <notebook>
+                        <page string="Resumo">
+                            <group>
+                                <group>
+                                    <field name="annual_income"/>
+                                    <field name="saving_capacity"/>
+                                    <field name="emergency_fund_months"/>
+                                </group>
+                                <group>
+                                    <field name="net_worth"/>
+                                    <field name="compliance_status"/>
+                                    <field name="risk_warnings" widget="html"/>
+                                </group>
+                            </group>
+                            <group>
+                                <field name="objective_summary" widget="text"/>
+                                <field name="household_notes" widget="text"/>
+                            </group>
+                            <group string="Atividades e tarefas">
+                                <field name="activity_ids" widget="mail_activity" readonly="1" options="{'no_open': False}"/>
+                            </group>
+                            <group string="Privacidade">
+                                <group>
+                                    <field name="privacy_deletion_requested"/>
+                                    <field name="privacy_requested_date" readonly="1"/>
+                                </group>
+                                <footer>
+                                    <button name="action_export_personal_data" type="object" string="Exportar dados" class="btn-secondary" icon="fa-download"/>
+                                    <button name="action_anonymize_partner" type="object" string="Anonimizar contato" class="btn-light" icon="fa-user-secret" attrs="{'invisible': [('privacy_deletion_requested', '=', False)]}"/>
+                                    <button name="action_request_data_deletion" type="object" string="Registrar exclusão" class="btn-outline-primary" icon="fa-shield"/>
+                                </footer>
+                            </group>
+                        </page>
+                        <page string="Alertas">
+                            <field name="advisory_alert_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="category"/>
+                                    <field name="trigger_date"/>
+                                    <field name="state" widget="statusbar"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Reuniões">
+                            <group>
+                                <field name="last_meeting_id" context="{'default_finance_profile_id': active_id}"/>
+                                <field name="next_meeting_id" context="{'default_finance_profile_id': active_id}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_finance_profile_search" model="ir.ui.view">
+        <field name="name">finance.profile.search</field>
+        <field name="model">finance.profile</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="partner_id"/>
+                <field name="advisor_id"/>
+                <filter string="Suitability expirada" domain="[('suitability_state', '=', 'expired')]"/>
+                <filter string="Alertas pendentes" domain="[('pending_documents', '&gt;', 0)]"/>
+                <filter string="Clientes PF" domain="[('investor_type', '=', 'pf')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_finance_alert_search" model="ir.ui.view">
+        <field name="name">finance.alert.search</field>
+        <field name="model">finance.alert</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="profile_id"/>
+                <filter string="Abertos" domain="[('state', '!=', 'done')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_finance_profile" model="ir.actions.act_window">
+        <field name="name">Perfis Financeiros</field>
+        <field name="res_model">finance.profile</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="context">{'default_investor_type': 'pf'}</field>
+    </record>
+
+    <record id="action_finance_alerts" model="ir.actions.act_window">
+        <field name="name">Alertas de consultoria</field>
+        <field name="res_model">finance.alert</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_profile_id': active_id, 'search_default_profile_id': active_id}</field>
+    </record>
+
+    <menuitem id="menu_finance_root" name="Consultoria Financeira" sequence="10" groups="finance_core.group_finance_consultant"/>
+    <menuitem id="menu_finance_profiles" parent="menu_finance_root" name="Clientes" action="action_finance_profile" sequence="10"/>
+    <menuitem id="menu_finance_alerts" parent="menu_finance_root" name="Alertas" action="action_finance_alerts" sequence="20" groups="finance_core.group_finance_consultant,finance_core.group_finance_compliance"/>
+</odoo>

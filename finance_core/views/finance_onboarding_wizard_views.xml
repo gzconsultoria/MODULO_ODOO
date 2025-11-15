@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_onboarding_wizard" model="ir.ui.view">
+        <field name="name">finance.onboarding.wizard.form</field>
+        <field name="model">finance.onboarding.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Onboarding financeiro" class="o_finance_onboarding_wizard">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="advisor_id"/>
+                            <field name="investor_type"/>
+                            <field name="currency_id"/>
+                        </group>
+                        <group>
+                            <field name="annual_income" widget="monetary"/>
+                            <field name="net_worth" widget="monetary"/>
+                            <field name="saving_capacity" widget="monetary"/>
+                            <field name="emergency_fund_months"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Suitability">
+                            <group>
+                                <field name="suitability_profile"/>
+                                <field name="suitability_score"/>
+                                <field name="suitability_last_review"/>
+                                <field name="compliance_status"/>
+                            </group>
+                        </page>
+                        <page string="Planejamento">
+                            <group>
+                                <field name="monthly_income_estimate" widget="monetary"/>
+                                <field name="monthly_expense_estimate" widget="monetary"/>
+                                <field name="next_review_suggestion"/>
+                            </group>
+                        </page>
+                        <page string="Notas">
+                            <group>
+                                <field name="objective_summary" widget="text"/>
+                                <field name="risk_warnings" widget="text"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <footer>
+                    <button name="action_confirm" type="object" string="Concluir onboarding" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

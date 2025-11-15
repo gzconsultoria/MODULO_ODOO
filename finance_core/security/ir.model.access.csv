@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finance_profile_consultant,finance.profile.consultant,model_finance_profile,finance_core.group_finance_consultant,1,1,1,0
+access_finance_profile_backoffice,finance.profile.backoffice,model_finance_profile,finance_core.group_finance_backoffice,1,1,1,1
+access_finance_profile_compliance,finance.profile.compliance,model_finance_profile,finance_core.group_finance_compliance,1,0,0,0
+access_finance_profile_portal,finance.profile.portal,model_finance_profile,base.group_portal,1,0,0,0
+access_finance_alert_consultant,finance.alert.consultant,model_finance_alert,finance_core.group_finance_consultant,1,1,1,0
+access_finance_alert_compliance,finance.alert.compliance,model_finance_alert,finance_core.group_finance_compliance,1,0,0,0

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_profile_form_planning" model="ir.ui.view">
+        <field name="name">finance.profile.form.planning</field>
+        <field name="model">finance.profile</field>
+        <field name="inherit_id" ref="finance_core.view_finance_profile_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Metas &amp; Planejamento" name="planning_overview">
+                    <group class="o_finance_planning_tab" colspan="4">
+                        <field name="goal_ids" context="{'default_profile_id': active_id}" mode="kanban,tree">
+                            <kanban default_group_by="state" class="o_finance_goal_kanban">
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div class="oe_kanban_card o_kanban_record">
+                                            <div class="oe_kanban_content">
+                                                <h4 class="o_kanban_primary">
+                                                    <field name="name"/>
+                                                </h4>
+                                                <div class="text-muted o_kanban_secondary">
+                                                    <field name="goal_type"/>
+                                                </div>
+                                                <div class="o_finance_goal_progress">
+                                                    <t t-set="progress" t-value="int((record.progress_ratio.raw_value or 0.0) * 100)"/>
+                                                    <span class="badge badge-primary">Progresso: <t t-esc="progress"/>%</span>
+                                                </div>
+                                                <div class="o_finance_goal_probability">
+                                                    <t t-if="record.probability.raw_value">
+                                                        <span class="badge badge-info">Probabilidade: <t t-esc="int(record.probability.raw_value)"/>%</span>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                            <div class="o_kanban_footer">
+                                                <span class="o_finance_goal_deadline">
+                                                    <i class="fa fa-calendar" role="img" aria-label="Prazo"/>
+                                                    <field name="horizon_date"/>
+                                                </span>
+                                                <span class="o_finance_goal_state">
+                                                    <field name="state" widget="badge"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                            <tree string="Metas financeiras">
+                                <field name="name"/>
+                                <field name="goal_type"/>
+                                <field name="target_amount" widget="monetary"/>
+                                <field name="accumulated_amount" widget="monetary"/>
+                                <field name="progress_ratio" widget="percentpie"/>
+                                <field name="horizon_date"/>
+                                <field name="state"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group col="2">
+                        <field name="cashflow_plan_ids" context="{'default_profile_id': active_id}" mode="tree,graph">
+                            <tree string="Fluxo de caixa">
+                                <field name="name"/>
+                                <field name="date"/>
+                                <field name="monthly_income" widget="monetary"/>
+                                <field name="monthly_expense" widget="monetary"/>
+                                <field name="monthly_surplus" widget="monetary"/>
+                            </tree>
+                            <graph string="Evolução do fluxo" type="bar" stacked="True">
+                                <field name="date" type="row" interval="month"/>
+                                <field name="monthly_income" type="measure"/>
+                                <field name="monthly_expense" type="measure"/>
+                                <field name="monthly_surplus" type="measure"/>
+                            </graph>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

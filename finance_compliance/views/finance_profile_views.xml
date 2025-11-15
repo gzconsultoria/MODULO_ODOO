@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_profile_form_compliance" model="ir.ui.view">
+        <field name="name">finance.profile.form.compliance</field>
+        <field name="model">finance.profile</field>
+        <field name="inherit_id" ref="finance_core.view_finance_profile_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Recomendações &amp; Compliance" name="compliance_overview">
+                    <group col="2">
+                        <field name="recommendation_ids" context="{'default_profile_id': active_id}" mode="kanban,tree">
+                            <kanban default_group_by="state" class="o_finance_recommendation_kanban">
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div class="oe_kanban_card o_kanban_record">
+                                            <div class="oe_kanban_content">
+                                                <h4>
+                                                    <field name="recommendation_date"/>
+                                                </h4>
+                                                <div class="text-muted">
+                                                    <i class="fa fa-bullseye" role="img" aria-label="Meta"/>
+                                                    <field name="goal_id"/>
+                                                </div>
+                                                <div class="o_finance_recommendation_state">
+                                                    <field name="state" widget="badge"/>
+                                                </div>
+                                                <div class="o_finance_recommendation_impact">
+                                                    <field name="impact_overview"/>
+                                                </div>
+                                            </div>
+                                            <div class="o_kanban_footer">
+                                                <span class="o_finance_recommendation_author text-muted">
+                                                    <field name="user_id"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                            <tree string="Recomendações">
+                                <field name="recommendation_date"/>
+                                <field name="goal_id"/>
+                                <field name="state"/>
+                                <field name="user_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group col="2">
+                        <field name="document_ids" context="{'default_profile_id': active_id}" mode="tree">
+                            <tree string="Documentos">
+                                <field name="name"/>
+                                <field name="category"/>
+                                <field name="expiration_date"/>
+                                <field name="is_expired" widget="boolean_toggle"/>
+                            </tree>
+                        </field>
+                        <field name="compliance_log_ids" context="{'default_profile_id': active_id}" mode="tree">
+                            <tree string="Logs de compliance">
+                                <field name="create_date"/>
+                                <field name="event"/>
+                                <field name="description"/>
+                                <field name="user_id"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_rebalance_wizard" model="ir.ui.view">
+        <field name="name">finance.rebalance.wizard.form</field>
+        <field name="model">finance.rebalance.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sugestão de rebalanceamento" create="false" edit="false">
+                <group>
+                    <field name="snapshot_id"/>
+                    <field name="rebalance_lines" widget="one2many_list">
+                        <tree editable="bottom">
+                            <field name="asset_class"/>
+                            <field name="delta_value"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                    <button name="action_apply" string="Registrar sugestão" type="object" class="btn-primary"/>
+                    <button string="Fechar" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

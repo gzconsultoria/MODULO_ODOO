@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_profile_board" model="board.board">
+        <field name="name">Painel do Consultor Financeiro</field>
+        <field name="company_id" eval="False"/>
+        <field name="line_ids" eval="[(0, 0, {
+            'name': 'Clientes com alerts',
+            'view_id': ref('finance_core.view_finance_profile_tree'),
+            'action_id': ref('finance_core.action_finance_profile'),
+            'sequence': 10,
+            'height': 300,
+        }), (0, 0, {
+            'name': 'Alertas pendentes',
+            'view_id': ref('finance_core.view_finance_profile_tree'),
+            'domain': "[('pending_documents', '>', 0)]",
+            'action_id': ref('finance_core.action_finance_profile'),
+            'sequence': 20,
+            'height': 250,
+        })]"/>
+    </record>
+
+    <record id="action_finance_profile_board" model="ir.actions.act_window">
+        <field name="name">Painel Financeiro</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="finance_core.view_finance_profile_board"/>
+        <field name="target">current</field>
+    </record>
+</odoo>
