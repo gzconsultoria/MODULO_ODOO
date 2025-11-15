@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ir_cron_finance_alert_refresh" model="ir.cron">
+        <field name="name">Financeiro: atualizar alertas dos perfis</field>
+        <field name="model_id" ref="model_finance_profile"/>
+        <field name="state">code</field>
+        <field name="code">model.search([])._generate_smart_alerts()</field>
+        <field name="interval_type">days</field>
+        <field name="interval_number">1</field>
+    </record>
+</odoo>

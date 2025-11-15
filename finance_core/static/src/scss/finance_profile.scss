@@ -1,0 +1,35 @@
+.o_finance_360_cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.o_finance_360_cards .o_finance_card {
+    background: linear-gradient(135deg, #f5f7fa, #ffffff);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 6px 16px rgba(10, 37, 64, 0.08);
+    min-height: 140px;
+}
+
+.o_finance_360_cards .o_finance_card label {
+    font-weight: 600;
+    color: #0a2540;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.o_finance_onboarding_wizard .o_form_sheet {
+    background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
+}
+
+.o_finance_onboarding_wizard .o_form_sheet .oe_title h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.o_finance_onboarding_wizard .oe_button_box {
+    display: flex;
+    gap: 12px;
+}

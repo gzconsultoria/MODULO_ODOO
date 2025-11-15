@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_asset_ref_tree" model="ir.ui.view">
+        <field name="name">finance.asset.ref.tree</field>
+        <field name="model">finance.asset.ref</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="identifier"/>
+                <field name="name"/>
+                <field name="asset_type"/>
+                <field name="asset_class"/>
+                <field name="provider_name"/>
+                <field name="last_price"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_finance_asset_ref_form" model="ir.ui.view">
+        <field name="name">finance.asset.ref.form</field>
+        <field name="model">finance.asset.ref</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="identifier"/>
+                            <field name="name"/>
+                            <field name="provider_name"/>
+                        </group>
+                        <group>
+                            <field name="asset_type"/>
+                            <field name="asset_class"/>
+                            <field name="suitability_min_profile"/>
+                        </group>
+                        <group>
+                            <field name="last_price"/>
+                            <field name="currency_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_finance_asset_ref" model="ir.actions.act_window">
+        <field name="name">Biblioteca de ativos</field>
+        <field name="res_model">finance.asset.ref</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_finance_investment_root" name="Investimentos" parent="finance_core.menu_finance_root" sequence="40"/>
+    <menuitem id="menu_finance_asset_ref" parent="menu_finance_investment_root" name="Ativos cadastrados" action="action_finance_asset_ref" sequence="5" groups="finance_core.group_finance_supervisor"/>
+</odoo>

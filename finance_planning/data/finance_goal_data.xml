@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="finance_goal_template_emergency" model="finance.goal.template">
+        <field name="name">Reserva de emergência 6 meses</field>
+        <field name="goal_type">emergency</field>
+        <field name="target_amount">18000</field>
+        <field name="periodic_contribution">1500</field>
+    </record>
+    <record id="finance_goal_template_retirement" model="finance.goal.template">
+        <field name="name">Aposentadoria complementar</field>
+        <field name="goal_type">retirement</field>
+        <field name="target_amount">1000000</field>
+        <field name="periodic_contribution">2500</field>
+    </record>
+</odoo>

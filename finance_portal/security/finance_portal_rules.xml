@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="finance_goal_rule_portal" model="ir.rule">
+        <field name="name">Portal - Metas</field>
+        <field name="model_id" ref="model_finance_goal"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="domain_force">[('profile_id.partner_id', 'child_of', [user.partner_id.id])]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="finance_portfolio_snapshot_rule_portal" model="ir.rule">
+        <field name="name">Portal - Snapshots</field>
+        <field name="model_id" ref="model_finance_portfolio_snapshot"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="domain_force">[('profile_id.partner_id', 'child_of', [user.partner_id.id])]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="finance_recommendation_rule_portal" model="ir.rule">
+        <field name="name">Portal - Recomendações</field>
+        <field name="model_id" ref="model_finance_recommendation"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="domain_force">[('profile_id.partner_id', 'child_of', [user.partner_id.id])]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="finance_document_rule_portal" model="ir.rule">
+        <field name="name">Portal - Documentos</field>
+        <field name="model_id" ref="model_finance_document"/>
+        <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+        <field name="domain_force">[('profile_id.partner_id', 'child_of', [user.partner_id.id])]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+</odoo>

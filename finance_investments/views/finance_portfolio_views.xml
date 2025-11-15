@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_portfolio_tree" model="ir.ui.view">
+        <field name="name">finance.portfolio.tree</field>
+        <field name="model">finance.portfolio</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="profile_id"/>
+                <field name="company_id"/>
+                <field name="benchmark"/>
+                <field name="target_allocation" widget="badge"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_finance_portfolio_form" model="ir.ui.view">
+        <field name="name">finance.portfolio.form</field>
+        <field name="model">finance.portfolio</field>
+        <field name="arch" type="xml">
+            <form string="Carteira">
+                <header>
+                    <button name="action_create_snapshot" type="object" string="Novo snapshot" class="btn-primary"/>
+                    <button name="action_open_review_wizard" type="object" string="Revisão guiada" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="profile_id"/>
+                            <field name="company_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="benchmark"/>
+                        </group>
+                    </group>
+                    <field name="target_allocation" widget="json"/>
+                    <notebook>
+                        <page string="Snapshots">
+                            <field name="snapshot_ids">
+                                <list>
+                                    <field name="snapshot_date"/>
+                                    <field name="market_value" widget="monetary"/>
+                                    <field name="allocation_warning"/>
+                                </list>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_finance_portfolio_snapshot_tree" model="ir.ui.view">
+        <field name="name">finance.portfolio.snapshot.tree</field>
+        <field name="model">finance.portfolio.snapshot</field>
+        <field name="arch" type="xml">
+            <list decoration-warning="allocation_warning">
+                <field name="snapshot_date"/>
+                <field name="portfolio_id"/>
+                <field name="company_id"/>
+                <field name="market_value" widget="monetary"/>
+                <field name="allocation_warning"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_finance_portfolio_snapshot_form" model="ir.ui.view">
+        <field name="name">finance.portfolio.snapshot.form</field>
+        <field name="model">finance.portfolio.snapshot</field>
+        <field name="arch" type="xml">
+            <form string="Snapshot">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="portfolio_id"/>
+                            <field name="snapshot_date"/>
+                        </group>
+                        <group>
+                            <field name="market_value" readonly="1"/>
+                            <field name="allocation_warning" readonly="1"/>
+                        </group>
+                    </group>
+                    <field name="position_ids">
+                        <list editable="bottom">
+                            <field name="reference_id"/>
+                            <field name="quantity"/>
+                            <field name="avg_price"/>
+                            <field name="market_price"/>
+                            <field name="market_value" readonly="1"/>
+                        </list>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_finance_portfolio" model="ir.actions.act_window">
+        <field name="name">Carteiras</field>
+        <field name="res_model">finance.portfolio</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_finance_portfolio_snapshot" model="ir.actions.act_window">
+        <field name="name">Snapshots de carteira</field>
+        <field name="res_model">finance.portfolio.snapshot</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_finance_portfolio" parent="menu_finance_investment_root" name="Carteiras" action="action_finance_portfolio" sequence="10"/>
+    <menuitem id="menu_finance_portfolio_snapshot" parent="menu_finance_investment_root" name="Snapshots" action="action_finance_portfolio_snapshot" sequence="20"/>
+</odoo>

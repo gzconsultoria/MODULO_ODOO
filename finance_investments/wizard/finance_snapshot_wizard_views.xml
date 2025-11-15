@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_snapshot_wizard" model="ir.ui.view">
+        <field name="name">finance.portfolio.snapshot.wizard.form</field>
+        <field name="model">finance.portfolio.snapshot.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Novo snapshot" create="false" edit="false">
+                <group>
+                    <field name="portfolio_id" readonly="1"/>
+                    <field name="snapshot_date"/>
+                    <field name="include_liabilities"/>
+                </group>
+                <footer>
+                    <button name="action_create_snapshot" type="object" string="Gerar" class="btn-primary"/>
+                    <button string="Cancelar" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

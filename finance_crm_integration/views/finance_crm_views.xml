@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_crm_lead_form" model="ir.ui.view">
+        <field name="name">crm.lead.form.finance</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook/page[@name='sales_purchases']/group" position="after">
+                <group string="Consultoria financeira">
+                    <field name="finance_profile_id"/>
+                    <field name="finance_expected_aum"/>
+                    <field name="finance_origin"/>
+                    <field name="finance_services"/>
+                    <field name="finance_suitability_status"/>
+                    <button name="action_create_finance_profile" type="object" string="Criar perfil financeiro" class="btn-secondary" modifiers="{'invisible': [('finance_profile_id', '!=', False)]}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>

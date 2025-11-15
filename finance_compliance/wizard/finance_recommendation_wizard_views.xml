@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_recommendation_wizard" model="ir.ui.view">
+        <field name="name">finance.recommendation.wizard.form</field>
+        <field name="model">finance.recommendation.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Assistente de recomendação" class="o_finance_recommendation_wizard">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="profile_id" readonly="1"/>
+                            <field name="goal_id"/>
+                        </group>
+                        <group>
+                            <field name="send_now"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="narrative" widget="html"/>
+                        <field name="impact_overview" widget="text"/>
+                    </group>
+                    <field name="line_ids">
+                        <list editable="bottom">
+                            <field name="reference_id"/>
+                            <field name="action_type"/>
+                            <field name="amount"/>
+                            <field name="rationale_plain"/>
+                            <field name="rationale_expert"/>
+                            <field name="risk_notes"/>
+                            <field name="impact_summary"/>
+                        </list>
+                    </field>
+                </sheet>
+                <footer>
+                    <button name="action_confirm" type="object" string="Gerar recomendação" class="btn-primary"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

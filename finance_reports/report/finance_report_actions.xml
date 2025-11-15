@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+        id="finance_profile_report"
+        string="Relatório Financeiro 360°"
+        model="finance.profile"
+        report_type="qweb-pdf"
+        name="finance_reports.finance_report_template"
+        file="finance_reports.finance_report_template"
+    />
+</odoo>

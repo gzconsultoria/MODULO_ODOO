@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_document_tree" model="ir.ui.view">
+        <field name="name">finance.document.tree</field>
+        <field name="model">finance.document</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="is_expired">
+                <field name="name"/>
+                <field name="profile_id"/>
+                <field name="company_id"/>
+                <field name="category"/>
+                <field name="expiration_date"/>
+                <field name="is_expired"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_finance_document_form" model="ir.ui.view">
+        <field name="name">finance.document.form</field>
+        <field name="model">finance.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="profile_id"/>
+                            <field name="company_id" readonly="1"/>
+                            <field name="category"/>
+                        </group>
+                        <group>
+                            <field name="attachment_id"/>
+                            <field name="expiration_date"/>
+                            <field name="is_expired" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_finance_compliance_log_tree" model="ir.ui.view">
+        <field name="name">finance.compliance.log.tree</field>
+        <field name="model">finance.compliance.log</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="create_date"/>
+                <field name="profile_id"/>
+                <field name="company_id"/>
+                <field name="recommendation_id"/>
+                <field name="event"/>
+                <field name="description"/>
+                <field name="user_id"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_finance_document" model="ir.actions.act_window">
+        <field name="name">Documentos de compliance</field>
+        <field name="res_model">finance.document</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_finance_compliance_log" model="ir.actions.act_window">
+        <field name="name">Logs de compliance</field>
+        <field name="res_model">finance.compliance.log</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_finance_compliance_root" name="Compliance" parent="finance_core.menu_finance_root" sequence="60" groups="finance_core.group_finance_compliance,finance_core.group_finance_supervisor"/>
+    <menuitem id="menu_finance_compliance_documents" parent="menu_finance_compliance_root" name="Documentos" action="action_finance_document" sequence="10"/>
+    <menuitem id="menu_finance_compliance_logs" parent="menu_finance_compliance_root" name="Logs" action="action_finance_compliance_log" sequence="20"/>
+</odoo>

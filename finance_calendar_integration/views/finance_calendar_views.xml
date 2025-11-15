@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_finance_calendar_form" model="ir.ui.view">
+        <field name="name">calendar.event.form.finance</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_ids']" position="after">
+                <field name="finance_profile_id" options="{'no_open': False}"/>
+            </xpath>
+            <xpath expr="//group[@name='reminder']" position="after">
+                <group string="Consultoria financeira">
+                    <field name="finance_meeting_type"/>
+                    <field name="finance_recording_url"/>
+                    <field name="finance_next_step"/>
+                    <button name="action_generate_followup_message" type="object" string="Gerar follow-up" class="btn-primary" modifiers="{'invisible': [('finance_profile_id', '=', False)]}"/>
+                    <button name="action_sync_google_meet" type="object" string="Sincronizar" class="btn-secondary"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
