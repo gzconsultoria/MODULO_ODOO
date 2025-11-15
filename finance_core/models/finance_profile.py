@@ -127,11 +127,13 @@ class FinanceProfile(models.Model):
         compute="_compute_financial_snapshots",
         store=True,
         group_operator="avg",
+        default=0.0,
     )
     goals_progress_percentage = fields.Float(
         string="Progresso médio das metas (%)",
-        compute="_compute_financial_snapshots",
+        compute="_compute_goals_progress_percentage",
         store=True,
+        default=0.0,
     )
     portfolio_value = fields.Monetary(
         string="AUM consolidado",
@@ -257,9 +259,13 @@ class FinanceProfile(models.Model):
                     aum_total = latest_snapshot.market_value
             normalized_progress = goals_progress if goal_count else 0.0
             profile.goals_progress = normalized_progress
-            profile.goals_progress_percentage = round(normalized_progress * 100.0, 2)
             profile.cashflow_balance = cashflow_balance
             profile.portfolio_value = aum_total
+
+    @api.depends("goals_progress")
+    def _compute_goals_progress_percentage(self):
+        for profile in self:
+            profile.goals_progress_percentage = round(profile.goals_progress * 100.0, 2)
 
     @api.depends("advisory_alert_ids", "advisory_alert_ids.state")
     def _compute_pending_documents(self):
