@@ -13,7 +13,6 @@
                 <field name="advisory_score"/>
                 <field name="portfolio_value" widget="monetary"/>
                 <field name="cashflow_balance" widget="monetary"/>
-                <field name="goals_progress_percentage"/>
                 <field name="pending_documents"/>
             </list>
         </field>
