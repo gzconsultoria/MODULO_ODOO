@@ -8,12 +8,12 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Carteira &amp; Patrimônio" name="investment_overview">
                     <group col="2">
-                        <field name="portfolio_snapshot_ids" context="{'default_profile_id': active_id}" mode="tree,graph,kanban">
-                            <tree string="Snapshots de carteira">
+                        <field name="portfolio_snapshot_ids" context="{'default_profile_id': active_id}" mode="list,graph,kanban">
+                            <list string="Snapshots de carteira">
                                 <field name="snapshot_date"/>
                                 <field name="market_value" widget="monetary"/>
                                 <field name="allocation_warning"/>
-                            </tree>
+                            </list>
                             <graph string="Evolução do patrimônio" type="line">
                                 <field name="snapshot_date" type="row" interval="month"/>
                                 <field name="market_value" type="measure"/>
@@ -41,21 +41,21 @@
                         </field>
                     </group>
                     <group col="2">
-                        <field name="asset_ids" context="{'default_profile_id': active_id}" mode="tree">
-                            <tree string="Ativos patrimoniais">
+                        <field name="asset_ids" context="{'default_profile_id': active_id}" mode="list">
+                            <list string="Ativos patrimoniais">
                                 <field name="reference_id"/>
                                 <field name="amount" widget="monetary"/>
                                 <field name="notes"/>
-                            </tree>
+                            </list>
                         </field>
-                        <field name="liability_ids" context="{'default_profile_id': active_id}" mode="tree">
-                            <tree string="Passivos">
+                        <field name="liability_ids" context="{'default_profile_id': active_id}" mode="list">
+                            <list string="Passivos">
                                 <field name="name"/>
                                 <field name="liability_type"/>
                                 <field name="outstanding_balance" widget="monetary"/>
                                 <field name="interest_rate"/>
                                 <field name="maturity_date"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </page>

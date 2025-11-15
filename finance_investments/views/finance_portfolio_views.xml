@@ -4,13 +4,13 @@
         <field name="name">finance.portfolio.tree</field>
         <field name="model">finance.portfolio</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="profile_id"/>
                 <field name="company_id"/>
                 <field name="benchmark"/>
                 <field name="target_allocation" widget="badge"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -38,11 +38,11 @@
                     <notebook>
                         <page string="Snapshots">
                             <field name="snapshot_ids">
-                                <tree>
+                                <list>
                                     <field name="snapshot_date"/>
                                     <field name="market_value" widget="monetary"/>
                                     <field name="allocation_warning"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                     </notebook>
@@ -55,13 +55,13 @@
         <field name="name">finance.portfolio.snapshot.tree</field>
         <field name="model">finance.portfolio.snapshot</field>
         <field name="arch" type="xml">
-            <tree decoration-warning="allocation_warning">
+            <list decoration-warning="allocation_warning">
                 <field name="snapshot_date"/>
                 <field name="portfolio_id"/>
                 <field name="company_id"/>
                 <field name="market_value" widget="monetary"/>
                 <field name="allocation_warning"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -82,13 +82,13 @@
                         </group>
                     </group>
                     <field name="position_ids">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="reference_id"/>
                             <field name="quantity"/>
                             <field name="avg_price"/>
                             <field name="market_price"/>
                             <field name="market_value" readonly="1"/>
-                        </tree>
+                        </list>
                     </field>
                 </sheet>
             </form>
@@ -98,13 +98,13 @@
     <record id="action_finance_portfolio" model="ir.actions.act_window">
         <field name="name">Carteiras</field>
         <field name="res_model">finance.portfolio</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="action_finance_portfolio_snapshot" model="ir.actions.act_window">
         <field name="name">Snapshots de carteira</field>
         <field name="res_model">finance.portfolio.snapshot</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_finance_portfolio" parent="menu_finance_investment_root" name="Carteiras" action="action_finance_portfolio" sequence="10"/>

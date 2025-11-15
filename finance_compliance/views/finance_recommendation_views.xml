@@ -4,14 +4,14 @@
         <field name="name">finance.recommendation.tree</field>
         <field name="model">finance.recommendation</field>
         <field name="arch" type="xml">
-            <tree decoration-success="state == 'ack'" decoration-danger="state == 'rejected'">
+            <list decoration-success="state == 'ack'" decoration-danger="state == 'rejected'">
                 <field name="recommendation_date"/>
                 <field name="profile_id"/>
                 <field name="company_id"/>
                 <field name="goal_id"/>
                 <field name="state"/>
                 <field name="user_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -44,23 +44,23 @@
                         <field name="impact_overview" widget="text"/>
                     </group>
                     <field name="line_ids">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="reference_id"/>
                             <field name="action_type"/>
                             <field name="amount"/>
                             <field name="rationale_plain"/>
                             <field name="risk_notes"/>
                             <field name="impact_summary"/>
-                        </tree>
+                        </list>
                     </field>
                     <group>
                         <field name="compliance_log_ids" readonly="1">
-                            <tree>
+                            <list>
                                 <field name="create_date"/>
                                 <field name="event"/>
                                 <field name="description"/>
                                 <field name="user_id"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </sheet>
@@ -72,7 +72,7 @@
     <record id="action_finance_recommendation" model="ir.actions.act_window">
         <field name="name">Recomendações</field>
         <field name="res_model">finance.recommendation</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_finance_recommendation" parent="finance_core.menu_finance_root" name="Recomendações" action="action_finance_recommendation" sequence="50"/>

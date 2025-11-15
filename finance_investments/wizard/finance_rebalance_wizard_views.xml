@@ -8,10 +8,10 @@
                 <group>
                     <field name="snapshot_id"/>
                     <field name="rebalance_lines" widget="one2many_list">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="asset_class"/>
                             <field name="delta_value"/>
-                        </tree>
+                        </list>
                     </field>
                 </group>
                 <footer>

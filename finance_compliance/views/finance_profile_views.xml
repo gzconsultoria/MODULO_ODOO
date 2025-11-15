@@ -8,7 +8,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Recomendações &amp; Compliance" name="compliance_overview">
                     <group col="2">
-                        <field name="recommendation_ids" context="{'default_profile_id': active_id}" mode="kanban,tree">
+                        <field name="recommendation_ids" context="{'default_profile_id': active_id}" mode="kanban,list">
                             <kanban default_group_by="state" class="o_finance_recommendation_kanban">
                                 <templates>
                                     <t t-name="kanban-box">
@@ -37,30 +37,30 @@
                                     </t>
                                 </templates>
                             </kanban>
-                            <tree string="Recomendações">
+                            <list string="Recomendações">
                                 <field name="recommendation_date"/>
                                 <field name="goal_id"/>
                                 <field name="state"/>
                                 <field name="user_id"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                     <group col="2">
-                        <field name="document_ids" context="{'default_profile_id': active_id}" mode="tree">
-                            <tree string="Documentos">
+                        <field name="document_ids" context="{'default_profile_id': active_id}" mode="list">
+                            <list string="Documentos">
                                 <field name="name"/>
                                 <field name="category"/>
                                 <field name="expiration_date"/>
                                 <field name="is_expired" widget="boolean_toggle"/>
-                            </tree>
+                            </list>
                         </field>
-                        <field name="compliance_log_ids" context="{'default_profile_id': active_id}" mode="tree">
-                            <tree string="Logs de compliance">
+                        <field name="compliance_log_ids" context="{'default_profile_id': active_id}" mode="list">
+                            <list string="Logs de compliance">
                                 <field name="create_date"/>
                                 <field name="event"/>
                                 <field name="description"/>
                                 <field name="user_id"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                 </page>

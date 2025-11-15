@@ -4,14 +4,14 @@
         <field name="name">finance.cashflow.plan.tree</field>
         <field name="model">finance.cashflow.plan</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="name"/>
                 <field name="profile_id"/>
                 <field name="date"/>
                 <field name="monthly_income" widget="monetary"/>
                 <field name="monthly_expense" widget="monetary"/>
                 <field name="monthly_surplus" widget="monetary"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -34,14 +34,14 @@
                         </group>
                     </group>
                     <field name="item_ids">
-                        <tree editable="bottom">
+                        <list editable="bottom">
                             <field name="name"/>
                             <field name="entry_type"/>
                             <field name="category"/>
                             <field name="periodicity"/>
                             <field name="amount"/>
                             <field name="actual_amount"/>
-                        </tree>
+                        </list>
                     </field>
                 </sheet>
             </form>
@@ -51,7 +51,7 @@
     <record id="action_finance_cashflow_plan" model="ir.actions.act_window">
         <field name="name">Planejamentos de caixa</field>
         <field name="res_model">finance.cashflow.plan</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_finance_cashflow_plan" parent="menu_finance_planning_root" name="Fluxo de caixa" action="action_finance_cashflow_plan" sequence="20"/>

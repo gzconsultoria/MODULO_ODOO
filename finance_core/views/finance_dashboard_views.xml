@@ -5,13 +5,13 @@
         <field name="company_id" eval="False"/>
         <field name="line_ids" eval="[(0, 0, {
             'name': 'Clientes com alerts',
-            'view_id': ref('finance_core.view_finance_profile_tree'),
+            'view_id': ref('finance_core.view_finance_profile_list'),
             'action_id': ref('finance_core.action_finance_profile'),
             'sequence': 10,
             'height': 300,
         }), (0, 0, {
             'name': 'Alertas pendentes',
-            'view_id': ref('finance_core.view_finance_profile_tree'),
+            'view_id': ref('finance_core.view_finance_profile_list'),
             'domain': "[('pending_documents', '>', 0)]",
             'action_id': ref('finance_core.action_finance_profile'),
             'sequence': 20,

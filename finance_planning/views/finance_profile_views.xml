@@ -8,7 +8,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Metas &amp; Planejamento" name="planning_overview">
                     <group class="o_finance_planning_tab" colspan="4">
-                        <field name="goal_ids" context="{'default_profile_id': active_id}" mode="kanban,tree">
+                        <field name="goal_ids" context="{'default_profile_id': active_id}" mode="kanban,list">
                             <kanban default_group_by="state" class="o_finance_goal_kanban">
                                 <templates>
                                     <t t-name="kanban-box">
@@ -43,7 +43,7 @@
                                     </t>
                                 </templates>
                             </kanban>
-                            <tree string="Metas financeiras">
+                            <list string="Metas financeiras">
                                 <field name="name"/>
                                 <field name="goal_type"/>
                                 <field name="target_amount" widget="monetary"/>
@@ -51,18 +51,18 @@
                                 <field name="progress_ratio" widget="percentpie"/>
                                 <field name="horizon_date"/>
                                 <field name="state"/>
-                            </tree>
+                            </list>
                         </field>
                     </group>
                     <group col="2">
-                        <field name="cashflow_plan_ids" context="{'default_profile_id': active_id}" mode="tree,graph">
-                            <tree string="Fluxo de caixa">
+                        <field name="cashflow_plan_ids" context="{'default_profile_id': active_id}" mode="list,graph">
+                            <list string="Fluxo de caixa">
                                 <field name="name"/>
                                 <field name="date"/>
                                 <field name="monthly_income" widget="monetary"/>
                                 <field name="monthly_expense" widget="monetary"/>
                                 <field name="monthly_surplus" widget="monetary"/>
-                            </tree>
+                            </list>
                             <graph string="Evolução do fluxo" type="bar" stacked="True">
                                 <field name="date" type="row" interval="month"/>
                                 <field name="monthly_income" type="measure"/>

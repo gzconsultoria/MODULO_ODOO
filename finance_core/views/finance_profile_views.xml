@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_finance_profile_tree" model="ir.ui.view">
-        <field name="name">finance.profile.tree</field>
+    <record id="view_finance_profile_list" model="ir.ui.view">
+        <field name="name">finance.profile.list</field>
         <field name="model">finance.profile</field>
         <field name="arch" type="xml">
-            <tree decoration-danger="suitability_state == 'expired'" decoration-warning="suitability_state == 'expiring'">
+            <list decoration-danger="suitability_state == 'expired'" decoration-warning="suitability_state == 'expiring'">
                 <field name="display_name"/>
                 <field name="advisor_id"/>
                 <field name="onboarding_stage"/>
@@ -15,7 +15,7 @@
                 <field name="cashflow_balance" widget="monetary"/>
                 <field name="goals_progress" widget="percentpie"/>
                 <field name="pending_documents"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -123,13 +123,13 @@
                         </page>
                         <page string="Alertas">
                             <field name="advisory_alert_ids">
-                                <tree editable="bottom">
+                                <list editable="bottom">
                                     <field name="name"/>
                                     <field name="category"/>
                                     <field name="trigger_date"/>
                                     <field name="state" widget="statusbar"/>
                                     <field name="description"/>
-                                </tree>
+                                </list>
                             </field>
                         </page>
                         <page string="Reuniões">
@@ -174,14 +174,14 @@
     <record id="action_finance_profile" model="ir.actions.act_window">
         <field name="name">Perfis Financeiros</field>
         <field name="res_model">finance.profile</field>
-        <field name="view_mode">tree,form,kanban</field>
+        <field name="view_mode">list,form,kanban</field>
         <field name="context">{'default_investor_type': 'pf'}</field>
     </record>
 
     <record id="action_finance_alerts" model="ir.actions.act_window">
         <field name="name">Alertas de consultoria</field>
         <field name="res_model">finance.alert</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{'default_profile_id': active_id, 'search_default_profile_id': active_id}</field>
     </record>
 

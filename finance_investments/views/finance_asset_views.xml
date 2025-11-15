@@ -4,14 +4,14 @@
         <field name="name">finance.asset.ref.tree</field>
         <field name="model">finance.asset.ref</field>
         <field name="arch" type="xml">
-            <tree>
+            <list>
                 <field name="identifier"/>
                 <field name="name"/>
                 <field name="asset_type"/>
                 <field name="asset_class"/>
                 <field name="provider_name"/>
                 <field name="last_price"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -45,7 +45,7 @@
     <record id="action_finance_asset_ref" model="ir.actions.act_window">
         <field name="name">Biblioteca de ativos</field>
         <field name="res_model">finance.asset.ref</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <menuitem id="menu_finance_investment_root" name="Investimentos" parent="finance_core.menu_finance_root" sequence="40"/>
