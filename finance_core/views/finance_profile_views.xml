@@ -35,10 +35,10 @@
                         <button type="object" name="action_open_partner" class="oe_stat_button" icon="fa-user">
                             <field name="partner_id" widget="statinfo" string="Contato"/>
                         </button>
-                        <button class="oe_stat_button" type="action" name="%(finance_core.action_finance_alerts)d" icon="fa-bell">
+                        <button class="oe_stat_button" type="object" name="action_open_alerts" icon="fa-bell">
                             <field name="pending_documents" widget="statinfo" string="Alertas"/>
                         </button>
-                        <button class="oe_stat_button" type="action" name="%(finance_core.action_finance_profile_board)d" icon="fa-dashboard">
+                        <button class="oe_stat_button" type="object" name="action_open_dashboard" icon="fa-dashboard">
                             <span class="o_stat_text">Dashboard</span>
                         </button>
                         <button class="oe_stat_button" type="object" name="action_open_goal_wizard" icon="fa-bullseye">
@@ -182,7 +182,6 @@
         <field name="name">Alertas de consultoria</field>
         <field name="res_model">finance.alert</field>
         <field name="view_mode">list,form</field>
-        <field name="context">{'default_profile_id': active_id, 'search_default_profile_id': active_id}</field>
     </record>
 
     <menuitem id="menu_finance_root" name="Consultoria Financeira" sequence="10" groups="finance_core.group_finance_consultant"/>
