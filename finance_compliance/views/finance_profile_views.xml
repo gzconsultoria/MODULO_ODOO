@@ -8,7 +8,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Recomendações &amp; Compliance" name="compliance_overview">
                     <group col="2">
-                        <field name="recommendation_ids" context="{'default_profile_id': active_id}" mode="kanban,list">
+                        <field name="recommendation_ids" mode="kanban,list">
                             <kanban default_group_by="state" class="o_finance_recommendation_kanban">
                                 <templates>
                                     <t t-name="kanban-box">
@@ -46,7 +46,7 @@
                         </field>
                     </group>
                     <group col="2">
-                        <field name="document_ids" context="{'default_profile_id': active_id}" mode="list">
+                        <field name="document_ids" mode="list">
                             <list string="Documentos">
                                 <field name="name"/>
                                 <field name="category"/>
@@ -54,7 +54,7 @@
                                 <field name="is_expired" widget="boolean_toggle"/>
                             </list>
                         </field>
-                        <field name="compliance_log_ids" context="{'default_profile_id': active_id}" mode="list">
+                        <field name="compliance_log_ids" mode="list">
                             <list string="Logs de compliance">
                                 <field name="create_date"/>
                                 <field name="event"/>

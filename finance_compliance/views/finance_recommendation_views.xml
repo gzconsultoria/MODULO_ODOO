@@ -21,9 +21,9 @@
         <field name="arch" type="xml">
             <form string="Recomendação">
                 <header>
-                    <button name="action_send" type="object" string="Enviar" states="draft" class="btn-primary"/>
-                    <button name="action_acknowledge" type="object" string="Registrar ciência" states="sent" class="btn-secondary"/>
-                    <button name="action_reject" type="object" string="Registrar recusa" states="sent" class="btn-danger"/>
+                    <button name="action_send" type="object" string="Enviar" class="btn-primary" modifiers="{'invisible': [('state', '!=', 'draft')]}"/>
+                    <button name="action_acknowledge" type="object" string="Registrar ciência" class="btn-secondary" modifiers="{'invisible': [('state', '!=', 'sent')]}"/>
+                    <button name="action_reject" type="object" string="Registrar recusa" class="btn-danger" modifiers="{'invisible': [('state', '!=', 'sent')]}"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,sent,ack,rejected"/>
                 </header>
                 <sheet>

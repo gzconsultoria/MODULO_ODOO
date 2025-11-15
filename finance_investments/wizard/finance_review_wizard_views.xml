@@ -15,7 +15,7 @@
                         <group>
                             <field name="include_snapshot"/>
                             <field name="create_meeting"/>
-                            <field name="meeting_datetime" attrs="{'invisible': [('create_meeting', '=', False)]}"/>
+                            <field name="meeting_datetime" modifiers="{'invisible': [('create_meeting', '=', False)]}"/>
                             <field name="create_followup_activity"/>
                         </group>
                     </group>

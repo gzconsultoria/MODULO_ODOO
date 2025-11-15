@@ -13,7 +13,7 @@
                     <field name="finance_meeting_type"/>
                     <field name="finance_recording_url"/>
                     <field name="finance_next_step"/>
-                    <button name="action_generate_followup_message" type="object" string="Gerar follow-up" class="btn-primary" attrs="{'invisible': [('finance_profile_id', '=', False)]}"/>
+                    <button name="action_generate_followup_message" type="object" string="Gerar follow-up" class="btn-primary" modifiers="{'invisible': [('finance_profile_id', '=', False)]}"/>
                     <button name="action_sync_google_meet" type="object" string="Sincronizar" class="btn-secondary"/>
                 </group>
             </xpath>

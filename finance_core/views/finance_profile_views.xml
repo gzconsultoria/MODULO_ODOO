@@ -166,7 +166,7 @@
                                 </group>
                                 <footer>
                                     <button name="action_export_personal_data" type="object" string="Exportar dados" class="btn-secondary" icon="fa-download"/>
-                                    <button name="action_anonymize_partner" type="object" string="Anonimizar contato" class="btn-light" icon="fa-user-secret" attrs="{'invisible': [('privacy_deletion_requested', '=', False)]}"/>
+                                    <button name="action_anonymize_partner" type="object" string="Anonimizar contato" class="btn-light" icon="fa-user-secret" modifiers="{'invisible': [('privacy_deletion_requested', '=', False)]}"/>
                                     <button name="action_request_data_deletion" type="object" string="Registrar exclusão" class="btn-outline-primary" icon="fa-shield"/>
                                 </footer>
                             </group>
@@ -184,8 +184,8 @@
                         </page>
                         <page string="Reuniões">
                             <group>
-                                <field name="last_meeting_id" context="{'default_finance_profile_id': active_id}"/>
-                                <field name="next_meeting_id" context="{'default_finance_profile_id': active_id}"/>
+                                <field name="last_meeting_id"/>
+                                <field name="next_meeting_id"/>
                             </group>
                         </page>
                     </notebook>

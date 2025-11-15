@@ -12,7 +12,7 @@
                     <field name="finance_origin"/>
                     <field name="finance_services"/>
                     <field name="finance_suitability_status"/>
-                    <button name="action_create_finance_profile" type="object" string="Criar perfil financeiro" class="btn-secondary" attrs="{'invisible': [('finance_profile_id', '!=', False)]}"/>
+                    <button name="action_create_finance_profile" type="object" string="Criar perfil financeiro" class="btn-secondary" modifiers="{'invisible': [('finance_profile_id', '!=', False)]}"/>
                 </group>
             </xpath>
         </field>

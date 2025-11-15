@@ -8,7 +8,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Metas &amp; Planejamento" name="planning_overview">
                     <group class="o_finance_planning_tab" colspan="4">
-                        <field name="goal_ids" context="{'default_profile_id': active_id}" mode="kanban,list">
+                        <field name="goal_ids" mode="kanban,list">
                             <kanban default_group_by="state" class="o_finance_goal_kanban">
                                 <templates>
                                     <t t-name="kanban-box">
@@ -55,7 +55,7 @@
                         </field>
                     </group>
                     <group col="2">
-                        <field name="cashflow_plan_ids" context="{'default_profile_id': active_id}" mode="list,graph">
+                        <field name="cashflow_plan_ids" mode="list,graph">
                             <list string="Fluxo de caixa">
                                 <field name="name"/>
                                 <field name="date"/>
