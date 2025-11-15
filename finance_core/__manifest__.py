@@ -12,7 +12,6 @@
         "security/finance_core_rules.xml",
         "data/finance_core_data.xml",
         "views/finance_profile_views.xml",
-        "views/finance_dashboard_views.xml",
         "views/finance_onboarding_wizard_views.xml",
     ],
     "assets": {

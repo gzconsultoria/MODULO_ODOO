@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="action_finance_alerts" model="ir.actions.act_window">
-        <field name="name">Alertas de consultoria</field>
-        <field name="res_model">finance.alert</field>
-        <field name="view_mode">list,form</field>
-    </record>
-
     <record id="view_finance_profile_list" model="ir.ui.view">
         <field name="name">finance.profile.list</field>
         <field name="model">finance.profile</field>
@@ -23,6 +17,46 @@
                 <field name="pending_documents"/>
             </list>
         </field>
+    </record>
+
+    <record id="action_finance_profile" model="ir.actions.act_window">
+        <field name="name">Perfis Financeiros</field>
+        <field name="res_model">finance.profile</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="context">{'default_investor_type': 'pf'}</field>
+    </record>
+
+    <record id="view_finance_profile_board" model="board.board">
+        <field name="name">Painel do Consultor Financeiro</field>
+        <field name="company_id" eval="False"/>
+        <field name="line_ids" eval="[(0, 0, {
+            'name': 'Clientes com alerts',
+            'view_id': ref('finance_core.view_finance_profile_list'),
+            'action_id': ref('finance_core.action_finance_profile'),
+            'sequence': 10,
+            'height': 300,
+        }), (0, 0, {
+            'name': 'Alertas pendentes',
+            'view_id': ref('finance_core.view_finance_profile_list'),
+            'domain': "[('pending_documents', '>', 0)]",
+            'action_id': ref('finance_core.action_finance_profile'),
+            'sequence': 20,
+            'height': 250,
+        })]"/>
+    </record>
+
+    <record id="action_finance_profile_board" model="ir.actions.act_window">
+        <field name="name">Painel Financeiro</field>
+        <field name="res_model">board.board</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="finance_core.view_finance_profile_board"/>
+        <field name="target">current</field>
+    </record>
+
+    <record id="action_finance_alerts" model="ir.actions.act_window">
+        <field name="name">Alertas de consultoria</field>
+        <field name="res_model">finance.alert</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <record id="view_finance_profile_form" model="ir.ui.view">
@@ -187,13 +221,6 @@
                 <filter string="Abertos" domain="[('state', '!=', 'done')]"/>
             </search>
         </field>
-    </record>
-
-    <record id="action_finance_profile" model="ir.actions.act_window">
-        <field name="name">Perfis Financeiros</field>
-        <field name="res_model">finance.profile</field>
-        <field name="view_mode">list,form,kanban</field>
-        <field name="context">{'default_investor_type': 'pf'}</field>
     </record>
 
     <menuitem id="menu_finance_root" name="Consultoria Financeira" sequence="10" groups="finance_core.group_finance_consultant"/>
