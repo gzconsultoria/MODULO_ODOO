@@ -53,10 +53,9 @@
                         </button>
                         <button
                             class="oe_stat_button"
-                            type="action"
-                            name="%(finance_core.action_finance_profile_board)d"
+                            type="object"
+                            name="action_open_dashboard"
                             icon="fa-dashboard"
-                            context="{'finance_profile_id': active_id}"
                         >
                             <span class="o_stat_text">Dashboard</span>
                         </button>
