@@ -290,13 +290,6 @@ class FinanceProfile(models.Model):
         self._generate_smart_alerts()
         return True
 
-    def action_open_dashboard(self):
-        self.ensure_one()
-        action = self.env.ref("finance_core.action_finance_profile_board", raise_if_not_found=False)
-        if not action:
-            raise UserError(_("O painel financeiro não está disponível."))
-        return action.read()[0]
-
     def _generate_smart_alerts(self):
         today = date.today()
         activity_type = self.env.ref("mail.mail_activity_data_todo", raise_if_not_found=False)
