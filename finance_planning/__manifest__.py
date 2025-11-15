@@ -2,7 +2,7 @@
 {
     "name": "Finance Planning",
     "summary": "Metas, fluxo de caixa e assistentes guiados vinculados a perfis financeiros",
-    "version": "16.0.1.0.0",
+    "version": "19.0.1.0.0",
     "license": "LGPL-3",
     "author": "Finance Suite",
     "depends": ["finance_core", "mail"],
@@ -14,4 +14,5 @@
         "views/finance_profile_views.xml",
         "wizard/finance_goal_wizard_views.xml",
     ],
+    "installable": True,
 }

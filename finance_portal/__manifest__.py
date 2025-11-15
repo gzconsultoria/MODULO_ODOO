@@ -2,7 +2,7 @@
 {
     "name": "Finance Portal",
     "summary": "Portal do cliente com visão 360°, documentos e mensagens seguras",
-    "version": "16.0.1.0.0",
+    "version": "19.0.1.0.0",
     "license": "LGPL-3",
     "author": "Finance Suite",
     "depends": [
@@ -23,4 +23,5 @@
         ],
     },
     "application": False,
+    "installable": True,
 }

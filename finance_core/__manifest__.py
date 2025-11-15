@@ -2,7 +2,7 @@
 {
     "name": "Finance Core",
     "summary": "Base financial advisory profile linked 1:1 to partners with alerts and 360° view",
-    "version": "16.0.1.0.0",
+    "version": "19.0.1.0.0",
     "license": "LGPL-3",
     "author": "Finance Suite",
     "depends": ["base", "contacts", "mail", "board"],
@@ -21,4 +21,5 @@
         ],
     },
     "application": True,
+    "installable": True,
 }

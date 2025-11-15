@@ -2,7 +2,7 @@
 {
     "name": "Finance Compliance",
     "summary": "Recomendações auditáveis, documentos e trilha imutável",
-    "version": "16.0.1.0.0",
+    "version": "19.0.1.0.0",
     "license": "LGPL-3",
     "author": "Finance Suite",
     "depends": ["finance_core", "finance_planning", "finance_investments", "mail"],
@@ -14,4 +14,5 @@
         "views/finance_profile_views.xml",
         "wizard/finance_recommendation_wizard_views.xml",
     ],
+    "installable": True,
 }
