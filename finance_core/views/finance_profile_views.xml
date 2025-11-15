@@ -87,8 +87,8 @@
                         </button>
                         <button
                             class="oe_stat_button"
-                            type="object"
-                            name="action_open_dashboard"
+                            type="action"
+                            name="%(finance_core.action_finance_profile_board)d"
                             icon="fa-dashboard"
                         >
                             <span class="o_stat_text">Dashboard</span>

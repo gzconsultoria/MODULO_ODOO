@@ -290,17 +290,6 @@ class FinanceProfile(models.Model):
         self._generate_smart_alerts()
         return True
 
-    def action_open_dashboard(self):
-        self.ensure_one()
-        action = self.env.ref("finance_core.action_finance_profile_board", raise_if_not_found=False)
-        if not action:
-            raise UserError(_("O dashboard financeiro não está configurado."))
-        [action_data] = action.read()
-        context = dict(action_data.get("context", {}) or {})
-        context["finance_profile_id"] = self.id
-        action_data["context"] = context
-        return action_data
-
     def _generate_smart_alerts(self):
         today = date.today()
         activity_type = self.env.ref("mail.mail_activity_data_todo", raise_if_not_found=False)
